@@ -1,7 +1,6 @@
 # r/travel Country and Karma Analytics
 
-I started this project to get more hands-on experience with APIs, SQL and Tableau plots/stories. I was also excited to work with travel data and reddit's API. The code for this project could be easily adapted to get and store posts featuring title keywords in any subreddit.
-
+I started this project to get more hands-on experience with APIs, SQL and Tableau plots/stories. I was also excited to work with travel data and reddit's API. The code for this project could easily be adapted to get and store posts with title keywords from any subreddit.
 ### The Data
 
 The goal of this project was to analyze trends in country mentions on r/travel. I narrowed the time frame to Jan 2013 - Jun 2017 so posts would be relatively recent.
