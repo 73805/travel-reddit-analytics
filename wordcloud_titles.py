@@ -4,15 +4,18 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import MySQLdb
 from nltk.corpus import stopwords
+import pickle
+
+db_secrets = pickle.load(open("secret_pickle/db_secrets.pkl", "rb"))
 
 # Setting up the Database
 print "Initializing the Database Connection"
 
-db = MySQLdb.connect(host="127.0.0.1",
-                     user="pyuser",
-                     passwd="password",
-                     db="reddit",
-                     port=4406)
+db = MySQLdb.connect(host=db_secrets['host'],
+                     user=db_secrets['user'],
+                     passwd=db_secrets['passwd'],
+                     db=db_secrets['db'],
+                     port=db_secrets['port'])
 cur = db.cursor()
 
 print "Building the text"
@@ -44,7 +47,7 @@ wc = WordCloud(background_color="white", max_words=2000, mask=mask, colormap='Da
 wc.generate(text)
 
 # store to file
-wc.to_file('wordcloud.png')
+wc.to_file('visuals/wordcloud.png')
 
 # show
 plt.imshow(wc, interpolation="bilinear")

@@ -8,6 +8,7 @@ import time
 # Loading pickles
 country_list = pickle.load(open('pkls/country_list.pkl', 'rb'))
 rdt_secrets = pickle.load(open("secret_pickle/sec_dict.pkl", "rb"))
+db_secrets = pickle.load(open("secret_pickle/db_secrets.pkl", "rb"))
 
 # character encodings
 def asciify(st):
@@ -29,11 +30,11 @@ rtravel = reddit.subreddit('travel')
 # Setting up the Database
 print "Initializing the Database Connection"
 
-db = MySQLdb.connect(host="127.0.0.1",
-                     user="pyuser",
-                     passwd="password",
-                     db="reddit",
-                     port=4406)
+db = MySQLdb.connect(host=db_secrets['host'],
+                     user=db_secrets['user'],
+                     passwd=db_secrets['passwd'],
+                     db=db_secrets['db'],
+                     port=db_secrets['port'])
 cur = db.cursor()
 
 # Declare some table meta-data and formatting helpers
@@ -74,8 +75,8 @@ if INIT_TABLE:
 # Chunk of code to allow aliasing of a search-word to a country_name in database
 # Set to false to use default country list
 country_aliasing = True
-country_alias_list = ['scotland', 'uk']
-country_alias_name = 'United Kingdom'
+country_alias_list = ['vietnam']
+country_alias_name = 'Vietnam'
 if country_aliasing:
     country_list = country_alias_list
 
